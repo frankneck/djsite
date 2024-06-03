@@ -1,0 +1,7 @@
+django
+requests
+beautifulsoup4
+jinja2
+django-jinja
+selenium
+
