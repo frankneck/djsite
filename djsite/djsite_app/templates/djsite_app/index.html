@@ -1,0 +1,17 @@
+{% extends 'djsite_app/base.html' %}
+{% block content %}
+<ul>
+    {% for i in information %}
+        <li>
+            {{i.title}}
+            <br>
+            {{i.description}}
+            <br>
+            {{i.price}}
+            <br>
+            {{i.number_of_players}}
+            <hr>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
