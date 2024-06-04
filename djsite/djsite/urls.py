@@ -20,8 +20,11 @@ from django.contrib import admin
 from django.urls import path, include
 import djsite_app.views
 
+from djsite_app.views import pageNotFound
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('djsite_app.urls'))
 ]
+
+handler404 = pageNotFound
