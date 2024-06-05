@@ -1,11 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title> {{ title }} </title>
+    <link type="text/css" href="{% static 'djsite_app/css/styles.css' %}" rel="stylesheet" />
 </head>
 <body>
-{% block content %}
-{% endblock content %}
+<header class="site-header">
+<div class="nav">
+    {% for i in menu %}
+        <a class="nav-item" href="#">
+            {{ i }}
+        </a>
+    {% endfor %}
+</div>
+</header>
+<div class="main-container">
+    {% block content %}
+    {% endblock content %}
+</div>
+<footer class="site-footer">
+    <p class="footer-content">
+        &copy; 2024 My Website. All rights reserved.
+    </p>
+</footer>
 </body>
 <html>

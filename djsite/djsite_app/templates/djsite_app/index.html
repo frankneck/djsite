@@ -1,16 +1,19 @@
 {% extends 'djsite_app/base.html' %}
 {% block content %}
-<ul>
+<ul class="main-content">
     {% for i in information %}
-        <li>
-            {{i.title}}
-            <br>
-            {{i.description}}
-            <br>
-            {{i.price}}
-            <br>
-            {{i.number_of_players}}
-            <hr>
+        <li class="main-item">
+            <div class="main-item-content">
+                <h2>{{i.title}}</h2>
+                <br>
+                <p>
+                    {{i.description}}
+                    <br>
+                </p>
+                <a class="buy-button" href="#">
+                    {{i.price}}
+                </a>
+            </div>
         </li>
     {% endfor %}
 </ul>

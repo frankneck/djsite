@@ -1,0 +1,99 @@
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Calibri', serif;
+    background-color: #f3f3f3;
+}
+
+.main-content{
+    color: #19865C;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+}
+
+.nav{
+    background-color: gold;
+    border: 1.5px solid #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.nav a{
+    transition: color 0.25s;
+}
+
+.nav-item{
+    color: black;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.nav a:hover{
+    color: #fa0000;
+}
+
+.main-item{
+    width: 215px;
+    height: 300px;
+    background-color: white;
+    margin: 10px 28px;
+    border: 1.5px solid black;
+    border-radius: 2px;
+}
+
+.main-item-content h2{
+    margin: 5px 5px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.main-item-content p{
+    margin: 5px 20px;
+    font-size: 12px;
+    text-align: center;
+    color: black;
+}
+
+.main-item-content a{
+    margin: 0px 30px;
+    display: flex;
+    justify-content: center;
+    padding: 0px 0px;
+    color: #000000;
+    border: 1.5px solid #000000;
+    background-color: rgb(255 215 0);
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.site-footer{
+    background-color: #000;
+    color: #fff;
+    padding: 2vh 0;
+    padding-bottom: 122px;
+}
+
+.footer-content{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buy-button{
+    text-decoration: none;
+}
+
+.buy-button:hover{
+    text-decoration: none;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
