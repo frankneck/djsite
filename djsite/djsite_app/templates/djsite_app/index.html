@@ -2,19 +2,16 @@
 {% block content %}
 <ul class="main-content">
     {% for i in information %}
-        <li class="main-item">
+        <div class="main-item" href="#">
             <div class="main-item-content">
-                <h2>{{i.title}}</h2>
-                <br>
-                <p>
-                    {{i.description}}
-                    <br>
-                </p>
-                <a class="buy-button" href="#">
-                    {{i.price}}
-                </a>
+                <a href="#"><h2>{{i.title}}</h2><br></a>
+                <a href="#"><p>{{i.description}}</p><br></a>
+                        <div class="article-style">
+                            <img src="{{ object.image.url }}" alt="Изображение">
+                        </div>
+                <a class="buy-button" href="#">{{i.price}}</a>
             </div>
-        </li>
+        </div>
     {% endfor %}
 </ul>
 {% endblock %}

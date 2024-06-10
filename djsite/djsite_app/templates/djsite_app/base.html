@@ -9,6 +9,9 @@
 <body>
 <header class="site-header">
 <div class="nav">
+    <div class="logo">
+        <a href="{% url 'index' %}"> <img src="static/djsite_app/images/logo.png" style="width: 40px"> </a>
+    </div>
     {% for i in menu %}
         <a class="nav-item" href="#">
             {{ i }}

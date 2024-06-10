@@ -33,6 +33,11 @@ body{
     text-decoration: none;
 }
 
+.logo img{
+    width: 40px;
+    height: auto;
+}
+
 .nav a:hover{
     color: #fa0000;
 }
@@ -44,6 +49,11 @@ body{
     margin: 10px 28px;
     border: 1.5px solid black;
     border-radius: 2px;
+}
+
+.main-item:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 .main-item-content h2{
@@ -60,15 +70,17 @@ body{
     color: black;
 }
 
-.main-item-content a{
+.main-item-content a {
+    text-decoration: none;
+}
+
+.buy-button{
     margin: 0px 30px;
     display: flex;
     justify-content: center;
     padding: 0px 0px;
-    color: #000000;
     border: 1.5px solid #000000;
     background-color: rgb(255 215 0);
-    text-decoration: none;
     font-size: 15px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
@@ -77,8 +89,7 @@ body{
 .site-footer{
     background-color: #000;
     color: #fff;
-    padding: 2vh 0;
-    padding-bottom: 122px;
+    padding: 2vh 0 122px;
 }
 
 .footer-content{

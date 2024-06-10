@@ -1,14 +1,29 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
-from .models import *
+from .models import Game
 
 menu = ['О сайте', 'Рассылка', 'Вход', 'Предложить идею']
 
 
 def index(request):
     information = Game.objects.all()
-    return render(request, 'djsite_app/index.html', {'title': 'Главная страница', 'information': information, 'menu': menu})
+    return render(request, 'djsite_app/index.html', {'title': 'Главная страница', 'information': information, 'menu':menu})
 
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('Ошибка 404')
+
+def view_products(request):
+    information = Game.objects.all()
+    return render(request,
+                  'djsite_app/product.html',
+                  {'title': 'Главная страница', 'information': information, 'menu': menu})
+
+def article(request, article: str):
+    matching_article = Game.objects.filter( article_slug=article).first()
+
+    return render(
+        request=request,
+        template_name='main_app/article.html',
+        context={"object": matching_article}
+    )
