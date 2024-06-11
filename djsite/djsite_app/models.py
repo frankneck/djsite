@@ -12,8 +12,7 @@ class Game(models.Model):
 
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    article_slug = models.SlugField("Слаг", null=False, blank=False, unique=True)
-    image = models.ImageField(upload_to="photos/%Y/%m/%d/")
+    photo = models.URLField()
     category = models.CharField(max_length=100)
     vendor = models.CharField(max_length=100)
     year = models.IntegerField()

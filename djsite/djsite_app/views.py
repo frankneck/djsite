@@ -12,18 +12,3 @@ def index(request):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('Ошибка 404')
-
-def view_products(request):
-    information = Game.objects.all()
-    return render(request,
-                  'djsite_app/product.html',
-                  {'title': 'Главная страница', 'information': information, 'menu': menu})
-
-def article(request, article: str):
-    matching_article = Game.objects.filter( article_slug=article).first()
-
-    return render(
-        request=request,
-        template_name='main_app/article.html',
-        context={"object": matching_article}
-    )
