@@ -4,21 +4,13 @@ import os
 
 
 class Game(models.Model):
-
-    def image_upload_to(self, instance=None):
-        if instance:
-            return os.path.join("ArticleSeries", slugify(self.article_slug), instance)
-        return None
-
-    title = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    photo = models.URLField()
-    category = models.CharField(max_length=100)
-    vendor = models.CharField(max_length=100)
-    year = models.IntegerField()
-    price = models.IntegerField()
-    number_of_players = models.CharField(max_length=10)
-    age = models.CharField(max_length=10)
+    title = models.CharField(max_length=100) #Лавка орка
+    description = models.TextField(blank=True) #Лавка орка
+    photo = models.URLField() #Лавка орка
+    vendor = models.CharField(max_length=100) #Лавка орка
+    year = models.IntegerField() #Hobby Games
+    price = models.IntegerField() #Лавка орка Hobby Games Вообще было бы прикольно низкую выводить
+    number_of_players = models.CharField(max_length=10) #Hobby Games
 
     def __str__(self):
         return self.title
