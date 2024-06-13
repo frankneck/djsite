@@ -1,13 +1,13 @@
 {% extends 'djsite_app/base.html' %}
 {% block content %}
 <ul class="main-content">
-    {% for i in information %}
+    {% for contact in page_obj %}
         <div class="main-item" href="#">
             <div class="main-item-content">
-                <a href="#"><h2>{{i.title}}</h2><br></a>
-                <a href="#"><p>{{i.description}}</p><br></a>
-                <a href="#"><img class="img" src="{{ i.photo }}" alt="Изображение" style="width: 100px; height: auto; margin: 30px 60px"></a>
-                <a class="buy-button" href="#">{{i.price}}</a>
+                <a href="#"><h2>{{ contact.title|truncatewords:5 }}</h2><br></a>
+                <a href="#"><p>Возраст: {{ contact.age|truncatewords:10 }}</p><br></a>
+                <a href="#"><img class="img" src="{{ contact.photo }}" alt="Изображение"></a>
+                <a class="buy-button" href="#">{{ contact.price }}</a>
             </div>
         </div>
     {% endfor %}

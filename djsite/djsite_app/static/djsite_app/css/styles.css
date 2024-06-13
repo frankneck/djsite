@@ -11,8 +11,7 @@ body{
     color: #19865C;
     list-style-type: none;
     display: flex;
-    flex-direction: row;
-    margin: 0px;
+    flex-wrap: wrap;
 }
 
 .nav{
@@ -44,16 +43,29 @@ body{
 
 .main-item{
     width: 215px;
-    height: 300px;
+    height: 360px;
     background-color: white;
     margin: 10px 28px;
     border: 1.5px solid black;
     border-radius: 2px;
 }
 
+.main-item img{
+    max-width: 100%;
+    max-height: 100%;
+    width: 150px;
+    height: 150px;
+    margin: 0px 30px;
+}
+
+
 .main-item:hover{
     transform: scale(1.05);
     transition: transform 0.3s ease;
+}
+
+.main-item-content{
+    position: relative;
 }
 
 .main-item-content h2{
@@ -75,15 +87,18 @@ body{
 }
 
 .buy-button{
-    margin: 0px 30px;
+margin: 0px 30px;
     display: flex;
     justify-content: center;
-    padding: 0px 0px;
+    padding: 0px 40px;
     border: 1.5px solid #000000;
     background-color: rgb(255 215 0);
     font-size: 15px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    position: absolute;
+    top: 320px;
+    left: 25px;
 }
 
 .site-footer{
@@ -113,4 +128,40 @@ body{
 .img img{
     width: 100px;
 
+}
+
+.page-nav{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+page-nav-item{
+    text-decoration: none;
+    color: black;
+    margin: 0px 5px;
+    border: 1px solid black;
+    padding: 10px 15px;
+    background-color: white;
+}
+
+.page-nav a{
+    text-decoration: none;
+    display: flex;
+    color: black;
+    margin: 0px 5px;
+    border: 1px solid black;
+    padding: 10px 15px;
+    background-color: white;
+}
+
+
+.page-nav-item_selected{
+    text-decoration: none;
+    color: white;
+    margin: 0px 5px;
+    border: 1px solid black;
+    padding: 10px 15px;
+    background-color: black;
 }
