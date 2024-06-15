@@ -22,15 +22,27 @@
 <div class="main-container">
     {% block content %}
     {% endblock content %}
-<ul class="page-nav">
-    {% for p in page_obj.paginator.page_range %}
-    {% if page_obj.number == p %}
-    <li class="page-nav-item_selected">{{ p }}</li>
-    {% else %}
-    <li class="page-nav-item"><a href="?page={{ p }}">{{ p }}</a></li>
-    {% endif %}
-    {% endfor %}
-</ul>
+    <ul class="page-nav">
+        {% if page_obj.has_previous %}
+        <li class="page-nav-item">
+            <a href="?page={{ page_obj.previous_page_number }}">{{ '<' }}</a>
+        </li>
+        {% endif %}
+        {% for p in page_obj.paginator.page_range %}
+        {% if page_obj.number == p %}
+        <li class="page-nav-item_selected">{{ p }}</li>
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li class="page-nav-item">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-nav-item">
+            <a href="?page={{ page_obj.next_page_number }}">{{ '>' }}</a>
+        </li>
+        {% endif %}
+    </ul>
 </div>
 <footer class="site-footer">
     <p class="footer-content">

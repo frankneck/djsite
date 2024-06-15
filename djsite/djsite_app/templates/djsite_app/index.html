@@ -4,10 +4,10 @@
     {% for contact in page_obj %}
         <div class="main-item" href="#">
             <div class="main-item-content">
-                <a href="#"><h2>{{ contact.title|truncatewords:5 }}</h2><br></a>
-                <a href="#"><p>Возраст: {{ contact.age|truncatewords:10 }}</p><br></a>
-                <a href="#"><img class="img" src="{{ contact.photo }}" alt="Изображение"></a>
-                <a class="buy-button" href="#">{{ contact.price }}</a>
+                <a href="{{ contact.url }}"><h2>{{ contact.title|truncatewords:5 }}</h2><br></a>
+                <a href="{{ contact.url }}"><p>Возраст: {{ contact.age|truncatewords:10 }}</p><br></a>
+                <a href="{{ contact.url }}"><img class="img" src="{{ contact.photo }}" alt="Изображение"></a>
+                <a class="buy-button" href="{{ contact.url }}">{{ contact.price }}</a>
             </div>
         </div>
     {% endfor %}

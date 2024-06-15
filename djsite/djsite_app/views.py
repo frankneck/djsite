@@ -8,11 +8,11 @@ menu = ['О сайте', 'Рассылка', 'Вход', 'Предложить �
 
 def index(request):
     information = Game.objects.all()
-    paginator = Paginator(information, 21)
+    paginator = Paginator(information, 15)
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'djsite_app/index.html', {'page_obj': page_obj, 'title': 'Главная страница', 'information': information, 'menu':menu})
+    return render(request, 'djsite_app/index.html', {'page_obj': page_obj, 'title': 'Главная страница', 'information': information, 'menu': menu})
 
 
 def pageNotFound(request, exception):

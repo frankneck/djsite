@@ -6,6 +6,7 @@ import os
 class Game(models.Model):
     title = models.CharField(max_length=100) #Лавка орка
     description = models.TextField(blank=True) #Лавка орка
+    url = models.URLField(blank=True)
     photo = models.URLField() #Лавка орка
     vendor = models.CharField(max_length=100) #Лавка орка
     year = models.IntegerField(blank=True, null=True, default=None)
