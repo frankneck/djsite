@@ -1,5 +1,5 @@
 import csv
-from parser import *
+from parser_of_lavka_orka import *
 
 
 with open('lavka_orka.csv', 'w', newline='') as csvfile:
