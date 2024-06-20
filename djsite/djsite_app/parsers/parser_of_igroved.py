@@ -42,7 +42,8 @@ def scrape_games_data_igroved(last_page):
         for game_link in game_links:
             game_url = game_link.find('div', class_='thumbnail')
             game_url = game_url.find('a', href=True)  # Находим ссылку на товар
-            game_url = game_url.get('href')  # Получение URL артикула и добавление в список артикулов (для получения данных из ссылки)
+            game_url = game_url.get(
+                'href')  # Получение URL артикула и добавление в список артикулов (для получения данных из ссылки)
             game_url = 'https://www.igroved.ru' + game_url
 
             # Получение цены
@@ -54,7 +55,7 @@ def scrape_games_data_igroved(last_page):
 
             if len(price_list) > 3:
                 price_list = (price_list[0] + price_list[1] + "," + price_list[-2] + price_list[-1]).split(",")
-                price = price_list[1] # второй элемент это скидочная цена
+                price = price_list[1]  # второй элемент это скидочная цена
                 price_list_real.append(price)
             elif len(price_list) == 2:
                 price = (price_list[0] + price_list[1])
@@ -72,6 +73,7 @@ def scrape_games_data_igroved(last_page):
     # Проходим по списку ссылок артикулов
     for url in urls:
         # Стек переменных
+        time = ""
         age = ""
         vendor = ""
         number_of_players = ""
@@ -140,13 +142,30 @@ def scrape_games_data_igroved(last_page):
                 number_of_players_list.append(number_of_players_tag.text)
             else:
                 continue
-        if len(number_of_players_list) > 0:
-            number_of_players = number_of_players_list[0]
+        if len(number_of_players_list) > 1:
+            number_of_players = number_of_players_list[0] + " " + "игроков"
         else:
-            number_of_players = "Для одного игрока"
+            number_of_players = ""
 
-        # Обнуление списка
-        number_of_players_list = []
+        # Получение длительности игры игроков
+        time_tags = soup.find('div', class_='properties-box')
+        time_tag_list = []
+        if time_tags:
+            time_tags = time_tags.find_all('a', class_='')
+        else:
+            time_tags = "Длительности игры не найдено"
+
+        for time_tag in time_tags:
+            href = time_tag.get('href')
+
+            if href.count("search/?numPlayers") > 0:
+                time_tag_list.append(time_tag.text)
+            else:
+                continue
+        if len(time_tag_list) > 1:
+            time = time_tag_list[1]
+        else:
+            time = ""
 
         # Получение цены
         if count_for_price < len(price_list_real):
@@ -161,14 +180,15 @@ def scrape_games_data_igroved(last_page):
             'Описание': description,
             'Цена': price,
             'Изображение': photo,
+            'Количество игроков': number_of_players,
             'URL': url,
             'Возраст': age,
-            'Производитель': vendor,
-            'Количество игроков': number_of_players
+            'Время игры': time,
+            'Производитель': vendor
         }
-        print(product_data)
         games_data.append(product_data)
-
+        print(product_data)
     return games_data
+
 
 # scrape_games_data_igroved(2)

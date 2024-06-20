@@ -6,6 +6,7 @@ from requests.exceptions import RequestException
 
 from djsite_app.parsers.parser_of_igroved import scrape_games_data_igroved
 from djsite_app.parsers.parser_of_lavka_orka import scrape_games_data_goodork
+from djsite_app.parsers.parser_of_nastolio import scrape_games_data_nastolio
 
 # Установка переменной окружения для настройки Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djsite.settings")
@@ -26,7 +27,8 @@ def save_games_to_database(games_data):
                 'price': int(game_data['Цена']) if game_data['Цена'].isdigit() else 0,
                 'age': game_data['Возраст'],
                 'vendor': game_data.get('Производитель', ''),
-                'number_of_players': game_data.get('Количество игроков', '')
+                'number_of_players': game_data.get('Количество игроков', ''),
+                'time': game_data.get('Время игры', '')
             }
         )
 
@@ -54,6 +56,9 @@ def save_games_to_database(games_data):
             if not game.number_of_players and game_data.get('Количество игроков'):
                 game.number_of_players = game_data['Количество игроков']
                 fields_to_update = True
+            if not game.time and game_data['Время игры']:
+                game.time = game_data['Время игры']
+                fields_to_update = True
 
             if fields_to_update:
                 game.save()
@@ -67,11 +72,13 @@ def save_games_to_database(games_data):
 
 
 # Объявление функций
-games_igroved = scrape_games_data_igroved(2)
-games_godork = scrape_games_data_goodork(2)
+games_igroved = scrape_games_data_igroved(30)  #30
+games_godork = scrape_games_data_goodork(30)  #35
+games_nastolio = scrape_games_data_nastolio(30)  #24
 
 # Сохранение
 save_games_to_database(games_igroved)
 save_games_to_database(games_godork)
+save_games_to_database(games_nastolio)
 
-print(f"Total games scraped: {len(games_igroved)+len(games_godork)}")
+print(f"Total games scraped: {len(games_nastolio)}")
