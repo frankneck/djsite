@@ -93,22 +93,29 @@ def scrape_games_data_goodork(last_page):
                 time_tag = time_tag.replace('                                                    ', ' ')
                 time_tag = time_tag.replace('Длительность игры', ' ')
                 time_list.append(time_tag.replace("\n", "").strip())
-            time = time_list[1]
+            if len(time_list) > 1:
+                time = time_list[1]
 
         number_of_players_tag_list = []
         number_of_players_tags = soup.find_all('li', class_='properties-item properties-item-odd cs-bg-4')
         if number_of_players_tags:
-
             for number_of_players_tag in number_of_players_tags:
                 number_of_players_tag = number_of_players_tag.text.strip()
                 number_of_players_tag_list.append(number_of_players_tag.replace("\n", "").strip())
-            number_of_players = number_of_players_tag_list[1].replace("Количество игроков","").strip()
-            number_of_players_tag_list = number_of_players.split(",")
 
             if len(number_of_players_tag_list) > 1:
-                number_of_players = number_of_players_tag_list[0] + " " + "-" + number_of_players_tag_list[-1] + " " + "игроков"
+                number_of_players = number_of_players_tag_list[1].replace("Количество игроков", "").strip()
+                number_of_players_tag_list = number_of_players.split(",")
+            else:
+                number_of_players = number_of_players_tag_list[0].replace("Количество игроков", "").strip()
+                number_of_players_tag_list = number_of_players.split(",")
+
+            if len(number_of_players_tag_list) > 1:
+                number_of_players = f"{number_of_players_tag_list[0]} - {number_of_players_tag_list[-1]} игроков"
             else:
                 number_of_players = "1 - 2 игрок"
+        else:
+            number_of_players = "Количество игроков не найдено"
 
         if title_tag:
             title = title_tag.text.strip().replace("Настольная игра", "").strip()
@@ -119,20 +126,22 @@ def scrape_games_data_goodork(last_page):
             title = re.sub(r'\s*арт\.\s*\d+', '', title).strip()
             title = title.replace(" : ", " ").strip()
             title = title.capitalize()
+            title = title.replace("Головоломка", "").strip()
             if title == ": манчкин 2. дикий топор,":
                 title = "Манчкин 2 дикий топор"
-
         else:
             title = "Название не найдено"
 
         if description_tag:
-            description = description_tag.get_text(separator='\n').strip().replace('\n', ' ')
+            description = description_tag.get_text(separator='\n').strip().replace('\н', ' ')
             description = description.lstrip(' ')
         else:
             description = "Описание не найдено"
 
         if vendor_tag:
             vendor = vendor_tag.text
+        else:
+            vendor = "Производитель не найден"
 
         if photo_url_tag:
             photo_url = photo_url_tag.get('src')
@@ -145,7 +154,7 @@ def scrape_games_data_goodork(last_page):
             price = "Цена не найдена"
 
         if age_tag:
-            age = age_tag.get_text().replace("\n", " ").strip().replace("Возраст", "").strip()
+            age = age_tag.get_text().replace("\н", " ").strip().replace("Возраст", "").strip()
             age = age.split(', ')
             if len(age) >= 2:
                 age = str(age[0] + "+")

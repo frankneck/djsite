@@ -62,6 +62,7 @@ def scrape_games_data_nastolio(last_page):
                 r'\s*\((?=.*?(\s*|2021|2020|2019|2018|2017|2016|2015|2014|2013|2012|2011)).*?\)',
                 '', title,
                 flags=re.IGNORECASE)
+            title = title.replace("Головоломка", "").strip()
 
             # Получение описания
             description_tag = soup.find('main', class_='content-container__main')

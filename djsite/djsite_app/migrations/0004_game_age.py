@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('djsite_app', '0003_alter_game_year'),
+        ('djsite_app', '0002_remove_game_age_remove_game_category_and_more'),
     ]
 
     operations = [

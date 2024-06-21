@@ -72,13 +72,14 @@ def save_games_to_database(games_data):
 
 
 # Объявление функций
-games_igroved = scrape_games_data_igroved(30)  #30
-games_godork = scrape_games_data_goodork(30)  #35
-games_nastolio = scrape_games_data_nastolio(30)  #24
+# games_igroved = scrape_games_data_igroved(6)  #30
+games_godork = scrape_games_data_goodork(6)  #35
+games_nastolio = scrape_games_data_nastolio(6)  #24
 
 # Сохранение
-save_games_to_database(games_igroved)
+#
 save_games_to_database(games_godork)
 save_games_to_database(games_nastolio)
+# print(f"Total games scraped: {len(games_nastolio)}")
 
-print(f"Total games scraped: {len(games_nastolio)}")
+
